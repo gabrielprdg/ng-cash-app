@@ -4,7 +4,7 @@ import { UserModel } from 'domain/models/user'
 import { AddUser, AddUserParams } from 'domain/usecases/user/add-user'
 import { Hasher } from '../../../protocols/criptography/hasher'
 
-export class DbAddAccount implements AddUser {
+export class DbAddUser implements AddUser {
   private readonly hasher: Hasher
   private readonly addUserRepository: AddUserRepository
   private readonly loadUserByUserNameRepository: LoadUserByUserNameRepository

@@ -1,7 +1,7 @@
 import { Encrypter } from 'data/protocols/criptography/encrypter'
 import { HashComparer } from 'data/protocols/criptography/hash-comparer'
 import { LoadUserByUserNameRepository } from 'data/protocols/db/user/load-user-by-username'
-import { UpdateAccessTokenRepository } from 'data/protocols/db/user/updateAccessTokenRepository'
+import { UpdateAccessTokenRepository } from 'data/protocols/db/user/update-access-token-repository'
 import { Authentication, AuthenticationParams } from 'domain/usecases/user/authentication'
 
 export class DbAthentication implements Authentication {
