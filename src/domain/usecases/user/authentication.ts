@@ -1,5 +1,5 @@
 export type AuthenticationParams = {
-  email: string
+  username: string
   password: string
 }
 

@@ -1,3 +1,5 @@
+import { AddUser } from 'domain/usecases/user/add-user'
+import { Authentication } from 'domain/usecases/user/authentication'
 import { UsernameInUseError } from 'presentation/errors/username-in-use-error'
 import { badRequest, forbidden, ok, serverError } from 'presentation/helpers/https/http-helper'
 import { Controller, HttpRequest, HttpResponse } from 'presentation/protocols'
@@ -30,7 +32,7 @@ export class SignUpController implements Controller {
         password
       })
 
-      if (!user || user.length < 3) {
+      if (!user || user.username.length < 3) {
         return forbidden(new UsernameInUseError())
       }
 
