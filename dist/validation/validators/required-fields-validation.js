@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RequiredFieldsValidation = void 0;
-const missing_param_error_1 = require("presentation/errors/missing-param-error");
+const missing_param_error_1 = require("../../presentation/errors/missing-param-error");
 class RequiredFieldsValidation {
     constructor(fieldName) {
         this.fiedlName = fieldName;

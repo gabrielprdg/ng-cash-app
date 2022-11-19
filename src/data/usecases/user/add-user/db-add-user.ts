@@ -17,6 +17,7 @@ export class DbAddUser implements AddUser {
 
   async add (userData: AddUserParams): Promise<UserModel> {
     const loadByUsername = await this.loadUserByUserNameRepository.loadByUsername(userData.username)
+    console.log('loadbyus', loadByUsername)
     if (!loadByUsername) {
       const hashedPassword = await this.hasher.hash(userData.password)
       /*
@@ -24,6 +25,7 @@ export class DbAddUser implements AddUser {
         are added and if the next SOURCE has a property equal to the previous SOURCE,
         this old property is changed
       */
+
       const user = await this.addUserRepository.add(Object.assign({},
         userData,
         { password: hashedPassword }

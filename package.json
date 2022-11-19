@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "sucrase-node src/main/server.ts",
     "start": "node dist/main/server.js",
-    "build": "rimraf dist && tsc -p tsconfig.json"
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "up": "sudo docker compose up -d",
+    "down": "sudo docker compose down"
   },
   "keywords": [],
   "author": "",

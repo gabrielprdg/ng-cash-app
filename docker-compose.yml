@@ -22,10 +22,10 @@ services:
       - 8084:8084
     environment:
       - DB_HOST=db
-      - DB_PORT=5454
+      - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=ng_cash
+      - DB_NAME=ng-cash
       - PORT=8084
     depends_on:
       - db

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthMiddleware = void 0;
-const access_denied_error_1 = require("presentation/errors/access-denied-error");
-const http_helper_1 = require("presentation/helpers/https/http-helper");
+const access_denied_error_1 = require("../../presentation/errors/access-denied-error");
+const http_helper_1 = require("../../presentation/helpers/https/http-helper");
 class AuthMiddleware {
     constructor(loadUserByToken, role) {
         this.loadUserByToken = loadUserByToken;

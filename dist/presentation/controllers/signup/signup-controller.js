@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SignUpController = void 0;
-const username_in_use_error_1 = require("presentation/errors/username-in-use-error");
-const http_helper_1 = require("presentation/helpers/https/http-helper");
+const username_in_use_error_1 = require("../../../presentation/errors/username-in-use-error");
+const http_helper_1 = require("../../../presentation/helpers/https/http-helper");
 class SignUpController {
     constructor(addUser, authentication, validation) {
         this.addUser = addUser;

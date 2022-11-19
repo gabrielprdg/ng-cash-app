@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsernameValidation = void 0;
-const invalid_param_error_1 = require("presentation/errors/invalid-param-error");
+const invalid_param_error_1 = require("../../presentation/errors/invalid-param-error");
 class UsernameValidation {
     constructor(username) {
         this.username = username;

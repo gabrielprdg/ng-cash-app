@@ -9,6 +9,7 @@ class DbAddUser {
     }
     async add(userData) {
         const loadByUsername = await this.loadUserByUserNameRepository.loadByUsername(userData.username);
+        console.log('loadbyus', loadByUsername);
         if (!loadByUsername) {
             const hashedPassword = await this.hasher.hash(userData.password);
             /*
