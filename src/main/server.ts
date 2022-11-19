@@ -1,12 +1,15 @@
-import 'reflect-metadata'
 import express, { json } from 'express'
+import { AppDataSource } from 'infra/db/typeorm/helper/app-data-source'
+import 'reflect-metadata'
 import routes from './config/routes'
-
-import { nextTick } from 'process'
 
 const app = express()
 app.use(json())
 
 routes(app)
 
-app.listen(8083,()=>console.log('Server started at port 8083'))
+AppDataSource
+  .getInstance()
+  .initialize()
+  .then(() => app.listen(process.env.PORT, () => console.log(`Server started at port ${process.env.PORT}`)))
+  .catch(err => console.log(err))
