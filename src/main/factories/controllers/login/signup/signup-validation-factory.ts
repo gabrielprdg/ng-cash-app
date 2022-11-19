@@ -1,7 +1,7 @@
-import { Validation } from 'presentation/protocols/validation'
-import { RequiredFieldsValidation } from 'validation/validators/required-fields-validation'
-import { UsernameValidation } from 'validation/validators/username-validation'
-import { ValidationComposite } from 'validation/validators/validation-composite'
+import { Validation } from '../../../../../presentation/protocols/validation'
+import { RequiredFieldsValidation } from '../../../../../validation/validators/required-fields-validation'
+import { UsernameValidation } from '../../../../../validation/validators/username-validation'
+import { ValidationComposite } from '../../../../../validation/validators/validation-composite'
 
 export const makeSignUpValidation = (): ValidationComposite => {
   const validations: Validation[] = []

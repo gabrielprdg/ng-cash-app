@@ -1,5 +1,5 @@
 import express, { json } from 'express'
-import { AppDataSource } from 'infra/db/typeorm/helper/app-data-source'
+import { AppDataSource } from '../infra/db/typeorm/helper/app-data-source'
 import 'reflect-metadata'
 import routes from './config/routes'
 
@@ -11,6 +11,7 @@ app.use(json())
 
 routes(app)
 
+console.log(process.env.PORT, '4r')
 AppDataSource
   .getInstance()
   .initialize()

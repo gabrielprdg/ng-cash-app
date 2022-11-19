@@ -1,8 +1,8 @@
-import { LoadUserByToken } from 'domain/usecases/user/load-user-by-token'
-import { AccessDeniedError } from 'presentation/errors/access-denied-error'
-import { forbidden, ok, serverError } from 'presentation/helpers/https/http-helper'
-import { HttpRequest, HttpResponse } from 'presentation/protocols'
-import { Middleware } from 'presentation/protocols/middleware'
+import { LoadUserByToken } from '../../domain/usecases/user/load-user-by-token'
+import { AccessDeniedError } from '../../presentation/errors/access-denied-error'
+import { forbidden, ok, serverError } from '../../presentation/helpers/https/http-helper'
+import { HttpRequest, HttpResponse } from '../../presentation/protocols'
+import { Middleware } from '../../presentation/protocols/middleware'
 
 export class AuthMiddleware implements Middleware {
   private readonly loadUserByToken: LoadUserByToken

@@ -1,8 +1,9 @@
-import { AddUser } from 'domain/usecases/user/add-user'
-import { Authentication } from 'domain/usecases/user/authentication'
-import { UsernameInUseError } from 'presentation/errors/username-in-use-error'
-import { badRequest, forbidden, ok, serverError } from 'presentation/helpers/https/http-helper'
-import { Controller, HttpRequest, HttpResponse } from 'presentation/protocols'
+import { AddUser } from '../../../domain/usecases/user/add-user'
+import { Authentication } from '../../../domain/usecases/user/authentication'
+import { UsernameInUseError } from '../../../presentation/errors/username-in-use-error'
+import { badRequest, forbidden, ok, serverError } from '../../../presentation/helpers/https/http-helper'
+import { Controller, HttpRequest, HttpResponse } from '../../../presentation/protocols'
+import { Validation } from '../../../presentation/protocols/validation'
 
 export class SignUpController implements Controller {
   private readonly addUser: AddUser
@@ -32,7 +33,7 @@ export class SignUpController implements Controller {
         password
       })
 
-      if (!user || user.username.length < 3) {
+      if (!user) {
         return forbidden(new UsernameInUseError())
       }
 

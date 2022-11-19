@@ -1,5 +1,5 @@
 import { Request, RequestHandler, Response } from 'express'
-import { Controller, HttpRequest } from 'presentation/protocols'
+import { Controller, HttpRequest } from '../../presentation/protocols'
 
 export const adaptRoute = (controller: Controller): RequestHandler => {
   // eslint-disable-next-line @typescript-eslint/no-misused-promises

@@ -1,0 +1,36 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:14.6
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ng-cash
+    ports:
+      - 5454:5432
+    # create a volumes to persist data 
+    volumes:
+      - pg_data:/var/lib/postgres/data
+  app:
+    build: .
+    container_name: ng_cash_app
+    restart: always
+    command: node dist/main/server.js
+    volumes:
+      - ./dist:/usr/src/ng-cash/dist
+    ports:
+      - 8084:8084
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5454
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=ng_cash
+      - PORT=8084
+    depends_on:
+      - db
+volumes:
+  pg_data:
+
+
+

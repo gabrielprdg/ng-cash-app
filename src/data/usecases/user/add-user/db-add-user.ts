@@ -1,7 +1,7 @@
-import { AddUserRepository } from 'data/protocols/db/user/add-user-repository'
-import { LoadUserByUserNameRepository } from 'data/protocols/db/user/load-user-by-username'
-import { UserModel } from 'domain/models/user'
-import { AddUser, AddUserParams } from 'domain/usecases/user/add-user'
+import { AddUserRepository } from '../../../../data/protocols/db/user/add-user-repository'
+import { LoadUserByUserNameRepository } from '../../../../data/protocols/db/user/load-user-by-username'
+import { UserModel } from '../../../../domain/models/user'
+import { AddUser, AddUserParams } from '../../../../domain/usecases/user/add-user'
 import { Hasher } from '../../../protocols/criptography/hasher'
 
 export class DbAddUser implements AddUser {

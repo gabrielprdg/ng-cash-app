@@ -1,7 +1,7 @@
-import { Decrypter } from 'data/protocols/criptography/decrypter'
-import { LoadUserByTokenRepository } from 'data/protocols/db/user/load-user-by-token-repository'
-import { UserModel } from 'domain/models/user'
-import { LoadUserByToken } from 'domain/usecases/user/load-user-by-token'
+import { Decrypter } from '../../../../data/protocols/criptography/decrypter'
+import { LoadUserByTokenRepository } from '../../../../data/protocols/db/user/load-user-by-token-repository'
+import { UserModel } from '../../../../domain/models/user'
+import { LoadUserByToken } from '../../../../domain/usecases/user/load-user-by-token'
 
 export class DbLoadUserByToken implements LoadUserByToken {
   private readonly decrypter: Decrypter
