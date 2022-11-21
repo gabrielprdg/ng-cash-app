@@ -16,6 +16,7 @@ class UserTypeOrmRepository {
                 password: userData.password
             }
         ])
+            .returning('id')
             .execute();
         return insertResult.raw;
     }

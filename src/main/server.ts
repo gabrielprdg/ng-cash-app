@@ -11,7 +11,7 @@ app.use(json())
 
 routes(app)
 
-console.log(process.env.PORT, '4r')
+console.log(process.env.PORT, '4rd')
 AppDataSource
   .getInstance()
   .initialize()

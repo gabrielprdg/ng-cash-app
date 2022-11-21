@@ -21,11 +21,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.ManyToMany)(() => typeorm_account_1.TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id),
     __metadata("design:type", typeorm_account_1.TypeOrmAccount)
-], TypeOrmTransaction.prototype, "debitedAccountId", void 0);
+], TypeOrmTransaction.prototype, "debitedAccount", void 0);
 __decorate([
     (0, typeorm_1.ManyToMany)(() => typeorm_account_1.TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id),
     __metadata("design:type", typeorm_account_1.TypeOrmAccount)
-], TypeOrmTransaction.prototype, "creditedAccountId", void 0);
+], TypeOrmTransaction.prototype, "creditedAccount", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)

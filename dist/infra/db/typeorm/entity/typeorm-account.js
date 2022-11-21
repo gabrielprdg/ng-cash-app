@@ -14,7 +14,7 @@ const typeorm_1 = require("typeorm");
 let TypeOrmAccount = class TypeOrmAccount {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { primaryKeyConstraintName: 'account_pk' }),
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
 ], TypeOrmAccount.prototype, "id", void 0);
 __decorate([

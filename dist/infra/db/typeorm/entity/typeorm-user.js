@@ -15,7 +15,7 @@ const typeorm_account_1 = require("./typeorm-account");
 let TypeOrmUser = class TypeOrmUser {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { primaryKeyConstraintName: 'user_pk' }),
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
 ], TypeOrmUser.prototype, "id", void 0);
 __decorate([
@@ -28,8 +28,9 @@ __decorate([
 ], TypeOrmUser.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => typeorm_account_1.TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", typeorm_account_1.TypeOrmAccount)
-], TypeOrmUser.prototype, "accountId", void 0);
+], TypeOrmUser.prototype, "account", void 0);
 TypeOrmUser = __decorate([
     (0, typeorm_1.Entity)('user')
 ], TypeOrmUser);

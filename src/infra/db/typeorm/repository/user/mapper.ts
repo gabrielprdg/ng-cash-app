@@ -1,14 +1,13 @@
-import { UserModel } from 'domain/models/user'
 import { TypeOrmUser } from '../../entity/typeorm-user'
 
 export class Mapper {
-  public static toDomainEntity (typeOrmUser: TypeOrmUser): UserModel {
-    const result: UserModel = {
+  public static toDomainEntity (typeOrmUser: TypeOrmUser): any {
+    const result = {
       id: typeOrmUser.id,
       username: typeOrmUser.username,
       password: typeOrmUser.password,
       // eslint-disable-next-line @typescript-eslint/no-base-to-string
-      accountId: (typeOrmUser.accountId).toString()
+      accountId: typeOrmUser.account
     }
 
     return result

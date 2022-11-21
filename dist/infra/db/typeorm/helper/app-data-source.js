@@ -17,8 +17,8 @@ class AppDataSource {
             username: (_c = process.env) === null || _c === void 0 ? void 0 : _c.DB_USER,
             password: (_d = process.env) === null || _d === void 0 ? void 0 : _d.DB_PASSWORD,
             database: (_e = process.env) === null || _e === void 0 ? void 0 : _e.DB_NAME,
-            entities: [typeorm_user_1.TypeOrmUser, typeorm_account_1.TypeOrmAccount, typeorm_transaction_1.TypeOrmTransaction],
-            synchronize: false,
+            entities: [typeorm_account_1.TypeOrmAccount, typeorm_user_1.TypeOrmUser, typeorm_transaction_1.TypeOrmTransaction],
+            synchronize: true,
             logging: false
         });
         return this.instance;

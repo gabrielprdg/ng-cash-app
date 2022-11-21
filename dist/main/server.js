@@ -35,7 +35,7 @@ dotenv.config();
 const app = (0, express_1.default)();
 app.use((0, express_1.json)());
 (0, routes_1.default)(app);
-console.log(process.env.PORT, '4r');
+console.log(process.env.PORT, '4rd');
 app_data_source_1.AppDataSource
     .getInstance()
     .initialize()

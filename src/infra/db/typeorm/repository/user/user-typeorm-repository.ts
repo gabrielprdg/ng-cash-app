@@ -22,6 +22,7 @@ export class UserTypeOrmRepository implements AddUser, LoadUserByUserNameReposit
             }
         ]
       )
+      .returning('id')
       .execute()
     return insertResult.raw
   }

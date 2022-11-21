@@ -1,9 +1,9 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { TypeOrmAccount } from './typeorm-account'
 
 @Entity('user')
 export class TypeOrmUser {
-    @PrimaryGeneratedColumn('uuid', { primaryKeyConstraintName: 'user_pk' })
+    @PrimaryGeneratedColumn('uuid')
     id: string
 
     @Column()
@@ -13,5 +13,6 @@ export class TypeOrmUser {
     password: string
 
     @OneToOne(() => TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id)
-    accountId: TypeOrmAccount
+    @JoinColumn()
+    account: TypeOrmAccount
 }

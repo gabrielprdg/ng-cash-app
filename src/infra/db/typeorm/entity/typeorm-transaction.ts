@@ -7,10 +7,10 @@ export class TypeOrmTransaction {
     id: string
 
     @ManyToMany(() => TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id)
-    debitedAccountId: TypeOrmAccount
+    debitedAccount: TypeOrmAccount
 
     @ManyToMany(() => TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id)
-    creditedAccountId: TypeOrmAccount
+    creditedAccount: TypeOrmAccount
 
     @Column()
     values: number

@@ -8,6 +8,7 @@ class DbAddUser {
         this.loadUserByUserNameRepository = loadUserByUserNameRepository;
     }
     async add(userData) {
+        console.log('user', userData);
         const loadByUsername = await this.loadUserByUserNameRepository.loadByUsername(userData.username);
         console.log('loadbyus', loadByUsername);
         if (!loadByUsername) {
@@ -18,6 +19,7 @@ class DbAddUser {
               this old property is changed
             */
             const user = await this.addUserRepository.add(Object.assign({}, userData, { password: hashedPassword }));
+            console.log('ed', user);
             return user;
         }
         return null;

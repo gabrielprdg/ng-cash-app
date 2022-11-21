@@ -10,6 +10,7 @@ export class UsernameValidation implements Validation {
 
   validate (input: any): Error {
     const username = input[this.username]
+    console.log('tes', username)
     if (username.length < 3) {
       return new InvalidParamError(`${this.username} have less than 3 characters`)
     }
