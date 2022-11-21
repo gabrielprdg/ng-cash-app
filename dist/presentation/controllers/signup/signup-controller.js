@@ -22,11 +22,11 @@ class SignUpController {
             const { username, password } = httpRequest.body;
             // create account with 100 credits
             const accountId = await this.addAccount.add({ balance: 100 });
+            console.log(accountId);
             const user = await this.addUser.add({
                 username,
                 password
             });
-            user.accountId = accountId;
             console.log(user, 'drx');
             if (!user) {
                 console.log('d3');

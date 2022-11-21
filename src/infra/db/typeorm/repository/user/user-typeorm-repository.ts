@@ -56,7 +56,7 @@ export class UserTypeOrmRepository implements AddUser, LoadUserByUserNameReposit
   async updateAccessToken (id: string, token: string): Promise<void> {
     await AppDataSource.getInstance()
       .createQueryBuilder()
-      .update()
+      .update(TypeOrmUser)
       .set({
         accessToken: token
       })

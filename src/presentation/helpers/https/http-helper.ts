@@ -6,7 +6,7 @@ export const serverError = (error: Error): HttpResponse => ({
   statusCode: 500
 })
 
-export const ok = (data: any): HttpResponse => ({
+export const ok = (data?: any): HttpResponse => ({
   body: data,
   statusCode: 200
 })

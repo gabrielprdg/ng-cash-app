@@ -10,10 +10,12 @@ class DbAthentication {
     }
     async auth(authentication) {
         const user = await this.loadUserByUserNameRepository.loadByUsername(authentication.username);
+        console.log('tometi', user);
         if (user) {
             const isValid = await this.hashComparer.compare(authentication.password, user.password);
             if (isValid) {
                 const accessToken = await this.encrypter.encrypt(user.id);
+                console.log('acdt', accessToken);
                 await this.updateAccessTokenRepository.updateAccessToken(user.id, accessToken);
                 return accessToken;
             }

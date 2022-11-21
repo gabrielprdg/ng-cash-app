@@ -43,7 +43,7 @@ class UserTypeOrmRepository {
     async updateAccessToken(id, token) {
         await app_data_source_1.AppDataSource.getInstance()
             .createQueryBuilder()
-            .update()
+            .update(typeorm_user_1.TypeOrmUser)
             .set({
             accessToken: token
         })
