@@ -1,3 +1,7 @@
+export type AddAccountParams = {
+  balance: number
+}
+
 export interface AddAccount {
-  add: ({ balance: number }) => Promise<{ id: string }>
+  add: (accountData: AddAccountParams) => Promise<string>
 }

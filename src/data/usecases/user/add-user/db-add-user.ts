@@ -1,6 +1,5 @@
 import { AddUserRepository } from '../../../../data/protocols/db/user/add-user-repository'
 import { LoadUserByUserNameRepository } from '../../../../data/protocols/db/user/load-user-by-username'
-import { UserModel } from '../../../../domain/models/user'
 import { AddUser, AddUserParams } from '../../../../domain/usecases/user/add-user'
 import { Hasher } from '../../../protocols/criptography/hasher'
 
@@ -15,7 +14,7 @@ export class DbAddUser implements AddUser {
     this.loadUserByUserNameRepository = loadUserByUserNameRepository
   }
 
-  async add (userData: AddUserParams): Promise<UserModel> {
+  async add (userData: AddUserParams): Promise<string> {
     const loadByUsername = await this.loadUserByUserNameRepository.loadByUsername(userData.username)
     console.log('loadbyus', loadByUsername)
     if (!loadByUsername) {
@@ -26,12 +25,12 @@ export class DbAddUser implements AddUser {
         this old property is changed
       */
 
-      const user = await this.addUserRepository.add(Object.assign({},
+      const userId = await this.addUserRepository.add(Object.assign({},
         userData,
         { password: hashedPassword }
       ))
 
-      return user
+      return userId
     }
     return null
   }
