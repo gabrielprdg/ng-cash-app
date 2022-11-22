@@ -8,7 +8,7 @@ export class DbAthentication implements Authentication {
   private readonly loadUserByUserNameRepository: LoadUserByUserNameRepository
   private readonly hashComparer: HashComparer
   private readonly encrypter: Encrypter
-  updateAccessTokenRepository: UpdateAccessTokenRepository
+  private readonly updateAccessTokenRepository: UpdateAccessTokenRepository
 
   constructor (
     loadUserByUserNameRepository: LoadUserByUserNameRepository,
@@ -29,8 +29,6 @@ export class DbAthentication implements Authentication {
       const isValid = await this.hashComparer.compare(authentication.password, user.password)
       if (isValid) {
         const accessToken = await this.encrypter.encrypt(user.id)
-        console.log('acdt', accessToken)
-        await this.updateAccessTokenRepository.updateAccessToken(user.id, accessToken)
         return accessToken
       }
     }
