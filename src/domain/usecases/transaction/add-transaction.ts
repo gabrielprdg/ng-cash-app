@@ -1,9 +1,9 @@
 export type AddTransactionParams = {
   username: string
   value: number
-  accessToken: string
+  userId: string
 }
 
 export interface AddTransaction {
-  add: (transactionData: AddTransactionParams) => Promise<void>
+  add: (transactionData: AddTransactionParams) => Promise<string>
 }

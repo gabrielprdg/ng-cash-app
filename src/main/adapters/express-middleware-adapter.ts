@@ -8,6 +8,7 @@ export const adaptMiddleware = (middleware: Middleware): RequestHandler => {
     }
 
     const httpResponse = await middleware.handle(httpRequest)
+    console.log('aiperdr', httpRequest)
 
     if (httpResponse.statusCode === 200) {
       Object.assign(req, httpResponse.body)

@@ -11,6 +11,7 @@ export class DbLoadTransactionsByAccount implements LoadTransactionsByAccount {
 
   async loadByAccount (id: string): Promise<TransactionModel[]> {
     const transactions = await this.loadTransactionsByAccountRepository.loadByAccount(id)
+    console.log('inthe', transactions)
     return transactions
   }
 }

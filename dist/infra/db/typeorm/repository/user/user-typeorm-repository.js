@@ -6,28 +6,23 @@ const app_data_source_1 = require("../../helper/app-data-source");
 const mapper_1 = require("./mapper");
 class UserTypeOrmRepository {
     async add(userData) {
-        const insertResult = await app_data_source_1.AppDataSource.getInstance()
-            .createQueryBuilder()
-            .insert()
-            .into(typeorm_user_1.TypeOrmUser)
-            .values([
-            {
-                username: userData.username,
-                password: userData.password
-            }
-        ])
-            .returning('id')
-            .execute();
-        return insertResult.raw;
-    }
-    async loadByUsername(username) {
-        let user;
+        const user = new typeorm_user_1.TypeOrmUser();
+        user.username = userData.username;
+        user.password = userData.password;
+        user.account = userData.account;
         const result = await app_data_source_1.AppDataSource.getInstance()
             .getRepository(typeorm_user_1.TypeOrmUser)
-            .findOneBy({ username });
-        if (result)
-            user = mapper_1.Mapper.toDomainEntity(result);
-        return user;
+            .save(user);
+        return result;
+    }
+    async loadByUsername(username) {
+        const result = await app_data_source_1.AppDataSource.getInstance()
+            .getRepository(typeorm_user_1.TypeOrmUser)
+            .createQueryBuilder('user')
+            .leftJoinAndSelect('user.account', 'accountId')
+            .where('user.username = :username', { username })
+            .getOne();
+        return result;
     }
     async loadByToken(token, role) {
         let user;
@@ -48,6 +43,16 @@ class UserTypeOrmRepository {
             accessToken: token
         })
             .where({ id });
+    }
+    async loadById(id) {
+        // let user: any | null
+        const result = await app_data_source_1.AppDataSource.getInstance()
+            .getRepository(typeorm_user_1.TypeOrmUser)
+            .createQueryBuilder('user')
+            .leftJoinAndSelect('user.account', 'accountId')
+            .where('user.id = :id', { id })
+            .getOne();
+        return result;
     }
 }
 exports.UserTypeOrmRepository = UserTypeOrmRepository;

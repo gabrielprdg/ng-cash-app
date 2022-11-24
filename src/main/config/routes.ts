@@ -1,4 +1,5 @@
 import { Router, Express } from 'express'
+import transactionRoutes from '../routes/transaction-routes'
 import loginRoutes from '../routes/login-routes'
 
 export default (app: Express): void => {
@@ -6,4 +7,5 @@ export default (app: Express): void => {
     app.use('/', router)
 
     loginRoutes(router)
+    transactionRoutes(router)
 }

@@ -1,4 +1,4 @@
-import { UnauthorizedError } from 'presentation/errors/unauthorized-error'
+import { UnauthorizedError } from '../../../presentation/errors/unauthorized-error'
 import { ServerError } from '../../errors/server-error'
 import { HttpResponse } from '../../protocols/http'
 

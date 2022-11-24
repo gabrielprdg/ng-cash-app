@@ -15,8 +15,6 @@ class DbAthentication {
             const isValid = await this.hashComparer.compare(authentication.password, user.password);
             if (isValid) {
                 const accessToken = await this.encrypter.encrypt(user.id);
-                console.log('acdt', accessToken);
-                await this.updateAccessTokenRepository.updateAccessToken(user.id, accessToken);
                 return accessToken;
             }
         }

@@ -1,10 +1,10 @@
 
 export type AddTransactionRepoParams = {
-  debitedAccountId: string
-  creditedAccountId: string
+  debitedAccount: any
+  creditedAccount: any
   value: number
 }
 
 export interface AddTransactionRepository {
-  add: (transactionData: AddTransactionRepoParams) => Promise<void>
+  add: (transactionData: AddTransactionRepoParams) => Promise<string>
 }

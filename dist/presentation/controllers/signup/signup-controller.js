@@ -4,9 +4,10 @@ exports.SignUpController = void 0;
 const username_in_use_error_1 = require("../../../presentation/errors/username-in-use-error");
 const http_helper_1 = require("../../../presentation/helpers/https/http-helper");
 class SignUpController {
-    constructor(addUser, addAccount, authentication, validation) {
+    constructor(addUser, addAccount, deleteAccount, authentication, validation) {
         this.addUser = addUser;
         this.addAccount = addAccount;
+        this.deleteAccount = deleteAccount;
         this.authentication = authentication;
         this.validation = validation;
     }
@@ -21,17 +22,17 @@ class SignUpController {
             console.log('oi');
             const { username, password } = httpRequest.body;
             // create account with 100 credits
-            const accountId = await this.addAccount.add({ balance: 100 });
-            console.log(accountId);
+            const account = await this.addAccount.add({ balance: 100 });
             const user = await this.addUser.add({
                 username,
-                password
+                password,
+                account
             });
-            console.log(user, 'drx');
             if (!user) {
-                console.log('d3');
+                await this.deleteAccount.deleteById(account.id);
                 return (0, http_helper_1.forbidden)(new username_in_use_error_1.UsernameInUseError());
             }
+            console.log(user, '4');
             console.log('acff');
             // after registration, login is performed
             const accessToken = await this.authentication.auth({

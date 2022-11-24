@@ -1,3 +1,4 @@
+import { DeleteAccount } from '../../../domain/usecases/account/delete-account'
 import { AddAccount } from '../../../domain/usecases/account/add-account'
 import { AddUser } from '../../../domain/usecases/user/add-user'
 import { Authentication } from '../../../domain/usecases/user/authentication'
@@ -9,17 +10,20 @@ import { Validation } from '../../../presentation/protocols/validation'
 export class SignUpController implements Controller {
   private readonly addUser: AddUser
   private readonly addAccount: AddAccount
+  private readonly deleteAccount: DeleteAccount
   private readonly authentication: Authentication
   private readonly validation: Validation
 
   constructor (
     addUser: AddUser,
     addAccount: AddAccount,
+    deleteAccount: DeleteAccount,
     authentication: Authentication,
     validation: Validation
   ) {
     this.addUser = addUser
     this.addAccount = addAccount
+    this.deleteAccount = deleteAccount
     this.authentication = authentication
     this.validation = validation
   }
@@ -40,19 +44,20 @@ export class SignUpController implements Controller {
       } = httpRequest.body
 
       // create account with 100 credits
-      const accountId = await this.addAccount.add({ balance: 100 })
-      console.log(accountId)
+      const account = await this.addAccount.add({ balance: 100 })
+
       const user = await this.addUser.add({
         username,
-        password
+        password,
+        account
       })
 
-      console.log(user, 'drx')
-
       if (!user) {
-        console.log('d3')
+        await this.deleteAccount.deleteById(account.id)
         return forbidden(new UsernameInUseError())
       }
+
+      console.log(user, '4')
 
       console.log('acff')
 

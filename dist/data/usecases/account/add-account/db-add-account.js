@@ -6,8 +6,9 @@ class DbAddAccount {
         this.addAccountRepository = addAccountRepository;
     }
     async add(accountData) {
-        const accountId = await this.addAccountRepository.add(accountData);
-        return accountId;
+        const account = await this.addAccountRepository.add(accountData);
+        console.log('presidente', account);
+        return account;
     }
 }
 exports.DbAddAccount = DbAddAccount;

@@ -15,21 +15,21 @@ const typeorm_account_1 = require("./typeorm-account");
 let TypeOrmTransaction = class TypeOrmTransaction {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { primaryKeyConstraintName: 'transaction_pk' }),
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
 ], TypeOrmTransaction.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => typeorm_account_1.TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id),
+    (0, typeorm_1.ManyToOne)(() => typeorm_account_1.TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id),
     __metadata("design:type", typeorm_account_1.TypeOrmAccount)
 ], TypeOrmTransaction.prototype, "debitedAccount", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => typeorm_account_1.TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id),
+    (0, typeorm_1.ManyToOne)(() => typeorm_account_1.TypeOrmAccount, (typeOrmAccount) => typeOrmAccount.id),
     __metadata("design:type", typeorm_account_1.TypeOrmAccount)
 ], TypeOrmTransaction.prototype, "creditedAccount", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], TypeOrmTransaction.prototype, "values", void 0);
+], TypeOrmTransaction.prototype, "value", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' }),
     __metadata("design:type", Date)

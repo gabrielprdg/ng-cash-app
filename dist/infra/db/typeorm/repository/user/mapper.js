@@ -7,8 +7,7 @@ class Mapper {
             id: typeOrmUser.id,
             username: typeOrmUser.username,
             password: typeOrmUser.password,
-            // eslint-disable-next-line @typescript-eslint/no-base-to-string
-            accountId: typeOrmUser.account
+            accountId: typeOrmUser.accountId
         };
         return result;
     }
