@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserTypeOrmRepository = void 0;
 const typeorm_user_1 = require("../../entity/typeorm-user");
 const app_data_source_1 = require("../../helper/app-data-source");
-const mapper_1 = require("./mapper");
 class UserTypeOrmRepository {
     async add(userData) {
         const user = new typeorm_user_1.TypeOrmUser();
@@ -24,7 +23,7 @@ class UserTypeOrmRepository {
             .getOne();
         return result;
     }
-    async loadByToken(token, role) {
+    async loadByToken(token) {
         let user;
         const result = await app_data_source_1.AppDataSource.getInstance()
             .getRepository(typeorm_user_1.TypeOrmUser)
@@ -32,7 +31,7 @@ class UserTypeOrmRepository {
             .where({ accessToken: token })
             .getOne();
         if (result)
-            user = mapper_1.Mapper.toDomainEntity(result);
+            user = result;
         return user;
     }
     async updateAccessToken(id, token) {

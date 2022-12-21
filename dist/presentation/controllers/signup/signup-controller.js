@@ -40,7 +40,7 @@ class SignUpController {
                 password
             });
             console.log('accesstoken', accessToken);
-            return (0, http_helper_1.ok)({ accessToken });
+            return (0, http_helper_1.ok)({ accessToken, user });
         }
         catch (err) {
             return (0, http_helper_1.serverError)(err);

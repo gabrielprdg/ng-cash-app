@@ -3,9 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoginController = void 0;
 const http_helper_1 = require("../../../presentation/helpers/https/http-helper");
 class LoginController {
-    constructor(authentication, validation) {
+    constructor(authentication, validation, loadUserByToken) {
         this.authentication = authentication;
         this.validation = validation;
+        this.loadUserByToken = loadUserByToken;
     }
     async handle(httpRequest) {
         try {
@@ -21,7 +22,8 @@ class LoginController {
             if (!accessToken) {
                 return (0, http_helper_1.unauthorized)();
             }
-            return (0, http_helper_1.ok)({ accessToken });
+            const user = await this.loadUserByToken.loadByToken(accessToken);
+            return (0, http_helper_1.ok)({ accessToken, user });
         }
         catch (err) {
             return (0, http_helper_1.serverError)(err);

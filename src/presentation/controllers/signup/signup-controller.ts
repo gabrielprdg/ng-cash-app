@@ -69,7 +69,7 @@ export class SignUpController implements Controller {
 
       console.log('accesstoken', accessToken)
 
-      return ok({ accessToken })
+      return ok({ accessToken, user })
     } catch (err) {
       return serverError(err)
     }

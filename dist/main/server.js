@@ -31,8 +31,11 @@ const app_data_source_1 = require("../infra/db/typeorm/helper/app-data-source");
 require("reflect-metadata");
 const routes_1 = __importDefault(require("./config/routes"));
 const dotenv = __importStar(require("dotenv"));
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cors = require('cors');
 dotenv.config();
 const app = (0, express_1.default)();
+app.use(cors());
 app.use((0, express_1.json)());
 (0, routes_1.default)(app);
 console.log(process.env.PORT, '4rd');

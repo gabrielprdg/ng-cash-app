@@ -1,3 +1,4 @@
+import { LoadUserByToken } from '../../../domain/usecases/user/load-user-by-token'
 import { Authentication } from '../../../domain/usecases/user/authentication'
 import { badRequest, ok, serverError, unauthorized } from '../../../presentation/helpers/https/http-helper'
 import { Controller, HttpRequest, HttpResponse, Validation } from '../../protocols'
@@ -5,10 +6,16 @@ import { Controller, HttpRequest, HttpResponse, Validation } from '../../protoco
 export class LoginController implements Controller {
   private readonly authentication: Authentication
   private readonly validation: Validation
+  private readonly loadUserByToken: LoadUserByToken
 
-  constructor (authentication: Authentication, validation: Validation) {
+  constructor (
+    authentication: Authentication,
+    validation: Validation,
+    loadUserByToken: LoadUserByToken
+  ) {
     this.authentication = authentication
     this.validation = validation
+    this.loadUserByToken = loadUserByToken
   }
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
@@ -29,7 +36,9 @@ export class LoginController implements Controller {
         return unauthorized()
       }
 
-      return ok({ accessToken })
+      const user = await this.loadUserByToken.loadByToken(accessToken)
+
+      return ok({ accessToken, user })
     } catch (err) {
       return serverError(err)
     }

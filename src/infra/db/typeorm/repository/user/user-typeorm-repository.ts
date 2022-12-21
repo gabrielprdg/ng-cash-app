@@ -6,7 +6,6 @@ import { UserModel } from '../../../../../domain/models/user'
 import { AddUser, AddUserParams } from '../../../../../domain/usecases/user/add-user'
 import { TypeOrmUser } from '../../entity/typeorm-user'
 import { AppDataSource } from '../../helper/app-data-source'
-import { Mapper } from './mapper'
 
 export class UserTypeOrmRepository implements AddUser, LoadUserByUserNameRepository, LoadUserByTokenRepository, UpdateAccessTokenRepository, LoadUserByIdRepository {
   async add (userData: AddUserParams): Promise<UserModel> {
@@ -33,7 +32,7 @@ export class UserTypeOrmRepository implements AddUser, LoadUserByUserNameReposit
     return result
   }
 
-  async loadByToken (token: string, role?: string): Promise<UserModel> {
+  async loadByToken (token: string): Promise<UserModel> {
     let user: UserModel | null
 
     const result = await AppDataSource.getInstance()
@@ -42,7 +41,7 @@ export class UserTypeOrmRepository implements AddUser, LoadUserByUserNameReposit
       .where({ accessToken: token })
       .getOne()
 
-    if (result) user = Mapper.toDomainEntity(result)
+    if (result) user = result
 
     return user
   }

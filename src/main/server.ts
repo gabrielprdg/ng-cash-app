@@ -4,9 +4,12 @@ import 'reflect-metadata'
 import routes from './config/routes'
 
 import * as dotenv from 'dotenv'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cors = require('cors')
 dotenv.config()
 
 const app = express()
+app.use(cors())
 app.use(json())
 
 routes(app)

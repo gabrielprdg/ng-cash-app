@@ -1,23 +1,23 @@
+import { LoadUserByIdRepository } from '../../../../data/protocols/db/user/load-user-by-id-repository'
 import { Decrypter } from '../../../../data/protocols/criptography/decrypter'
-import { LoadUserByTokenRepository } from '../../../../data/protocols/db/user/load-user-by-token-repository'
 import { UserModel } from '../../../../domain/models/user'
 import { LoadUserByToken } from '../../../../domain/usecases/user/load-user-by-token'
 
 export class DbLoadUserByToken implements LoadUserByToken {
   private readonly decrypter: Decrypter
-  private readonly loadUserByTokenRepository: LoadUserByTokenRepository
+  private readonly loadUserByIdRepository: LoadUserByIdRepository
 
-  constructor (decrypter: Decrypter, loadUserByTokenRepository) {
+  constructor (decrypter: Decrypter, loadUserByIdRepository: LoadUserByIdRepository) {
     this.decrypter = decrypter
-    this.loadUserByTokenRepository = loadUserByTokenRepository
+    this.loadUserByIdRepository = loadUserByIdRepository
   }
 
-  async load (accessToken: string, role?: string): Promise<UserModel> {
-    const token = await this.decrypter.decrypt(accessToken)
-    if (token) {
-      const User = await this.loadUserByTokenRepository.loadByToken(accessToken, role)
-      if (User) {
-        return User
+  async loadByToken (accessToken: string): Promise<UserModel> {
+    const userDecrypted = await this.decrypter.decrypt(accessToken)
+    if (userDecrypted) {
+      const user = await this.loadUserByIdRepository.loadById(userDecrypted.id)
+      if (user) {
+        return user
       }
     }
     return null

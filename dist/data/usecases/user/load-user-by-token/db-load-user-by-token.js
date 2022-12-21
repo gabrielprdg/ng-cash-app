@@ -2,16 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DbLoadUserByToken = void 0;
 class DbLoadUserByToken {
-    constructor(decrypter, loadUserByTokenRepository) {
+    constructor(decrypter, loadUserByIdRepository) {
         this.decrypter = decrypter;
-        this.loadUserByTokenRepository = loadUserByTokenRepository;
+        this.loadUserByIdRepository = loadUserByIdRepository;
     }
-    async load(accessToken, role) {
-        const token = await this.decrypter.decrypt(accessToken);
-        if (token) {
-            const User = await this.loadUserByTokenRepository.loadByToken(accessToken, role);
-            if (User) {
-                return User;
+    async loadByToken(accessToken) {
+        const userDecrypted = await this.decrypter.decrypt(accessToken);
+        if (userDecrypted) {
+            const user = await this.loadUserByIdRepository.loadById(userDecrypted.id);
+            if (user) {
+                return user;
             }
         }
         return null;
